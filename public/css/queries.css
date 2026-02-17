@@ -1,0 +1,496 @@
+/* =============================================================
+   queries.css — IronPDF for C++ Landing Page
+   Mobile-first responsive overrides only.
+   All base styles live in style.css.
+
+   Breakpoints (matching Bootstrap 5 grid):
+     sm  ≥ 576px
+     md  ≥ 768px
+     lg  ≥ 992px
+     xl  ≥ 1200px
+     xxl ≥ 1400px
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   XXL — Desktop monitors (≥ 1400px)
+   ------------------------------------------------------------- */
+@media (min-width: 1400px) {
+  .hero {
+    padding: 7.5rem 0 0;
+  }
+
+  .hero-image-wrap {
+    width: 75%;
+  }
+
+  .hero-image {
+    height: 88%;
+  }
+
+  .features-section {
+    padding: 6rem 0 0 0;
+  }
+
+  .why-section,
+  .early-access-section {
+    padding: 6rem 0;
+  }
+}
+
+/* -------------------------------------------------------------
+   XL — Laptops only (1200px – 1399px)
+   ------------------------------------------------------------- */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .hero {
+    padding: 6.5rem 0 0;
+  }
+
+  .hero-image-wrap {
+    width: 53%;
+  }
+
+  .hero-image {
+    height: 88%;
+  }
+
+  .features-section {
+    padding: 6rem 0 0 0;
+  }
+
+  .feature-list {
+    gap: 2rem 0.5rem;
+  }
+
+  .feature-item {
+    gap: 0.5rem;
+  }
+
+  .feature-item > span:last-child:not(.feature-hash) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .why-section,
+  .early-access-section {
+    padding: 6rem 0;
+  }
+}
+
+/* -------------------------------------------------------------
+   LG — Tablet landscape / small desktop (992px – 1199px)
+   ------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .hero-image-wrap {
+    width: 53%;
+  }
+
+  .hero-image {
+    height: 65%;
+  }
+
+  .features-section {
+    padding: 4rem 0 0 0;
+  }
+}
+
+/* -------------------------------------------------------------
+   MD — Tablet portrait (768px – 991px)
+   ------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .hero-image-wrap {
+    display: none;
+  }
+
+  .hero {
+    padding: 5rem 0 2rem;
+  }
+
+  .hero-content {
+    padding-top: 1.5rem;
+  }
+
+  /* Mobile nav background */
+  .site-nav {
+    background: var(--clr-bg-darkest, #1a0a2e);
+  }
+
+  /* Mobile nav collapse menu */
+  .site-nav .navbar-collapse {
+    background: var(--clr-bg-darkest, #1a0a2e);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: none;
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  .navbar-toggler {
+    padding: 0.35rem 0.55rem;
+  }
+
+  .site-nav .navbar-nav {
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .site-nav .navbar-nav .nav-link {
+    color: #ffffff !important;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .site-nav .navbar-nav .nav-link:hover,
+  .site-nav .navbar-nav .nav-link:focus-visible {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .features-section {
+    padding: 4rem 0 0 0;
+  }
+
+  .feature-item > span:last-child:not(.feature-hash) {
+    display: none;
+  }
+
+  .why-icon-group {
+    margin-bottom: 2rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   SM — Mobile landscape / large phones (576px – 767px)
+   ------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* ── Global mobile padding ── */
+  /* Add breathing room on left/right for all sections */
+  .container,
+  .container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* ── Navigation ── */
+  .site-nav {
+    padding: 0.6rem 0;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 4.5rem 0 2rem; /* more top space so nav doesn't overlap */
+  }
+
+  .hero-content {
+    padding-top: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-coming-soon {
+    margin-bottom: 2rem;
+  }
+
+  /* ── Signup form: stack input above button ── */
+  .signup-form {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 12px;
+    height: auto;
+    max-width: 100%;
+  }
+  .signup-form .form-control {
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+  }
+  .signup-form .btn-signup {
+    border-radius: 30px;
+    width: 100%;
+    text-align: center;
+    min-width: unset;
+    padding: 0.75rem 1.2rem;
+  }
+
+  /* ── Signup banner ── */
+  .signup-banner {
+    padding: 2.5rem 0;
+  }
+
+  .signup-banner h2 {
+    font-size: 1.6rem;
+  }
+
+  .signup-banner p {
+    font-size: 1rem;
+  }
+
+  .coming-soon-strip {
+    font-size: 0.85rem;
+    gap: 0.3rem;
+  }
+  /* ── Features section ── */
+  .features-section {
+    padding-top: 2rem;
+    padding-bottom: 0;
+    text-align: left;
+  }
+
+  .section-title-wrap {
+    flex-direction: row;
+    gap: 0;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Position "Coming Soon" badge over the ++ in "C++" */
+  .badge-coming-soon {
+    width: 45px;
+    height: 45px;
+    top: -1.4rem;
+    right: -1.8rem;
+  }
+
+  /* Features: left-align list items */
+  .feature-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-item {
+    font-size: 0.9rem;
+    text-align: left;
+    align-items: flex-start; /* align # to top of text, not center */
+  }
+
+  /* Hide the | separator on mobile */
+  .feature-item > span:last-child:not(.feature-hash) {
+    display: none;
+  }
+
+  .feature-hash {
+    margin-top: 0.15em; /* fine-tune # alignment with first line of text */
+    flex-shrink: 0;
+  }
+
+  .feature-description {
+    padding: 1.5rem 0;
+  }
+
+  .feature-description .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .feature-description p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ── Why C++ section ── */
+  .why-section {
+    padding: 3.5rem 0;
+  }
+
+  .why-icon-group {
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .why-icon-diagram {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .why-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .why-content p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ── Early access section ── */
+  .early-access-section {
+    padding: 3.5rem 0;
+  }
+
+  .early-access-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .early-access-section .lead-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* Product cards: full-width single column */
+  .product-cards {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .product-card {
+    flex: unset;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem 1.4rem;
+    gap: 1rem;
+  }
+
+  /* ── Bottom signup ── */
+  .bottom-signup {
+    padding: 3rem 0 3.5rem;
+  }
+
+  .bottom-signup h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   XS — Small mobile (< 576px)
+   ------------------------------------------------------------- */
+@media (max-width: 575px) {
+  /* Extra padding on very small screens */
+  .container,
+  .container-fluid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Nav brand text slightly smaller */
+  .site-nav .navbar-brand {
+    font-size: 0.95rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 4rem 0 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-logo-area {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .logo-mark-small {
+    width: 34px;
+    height: 32px;
+  }
+
+  .hero-logo-iron {
+    font-size: 0.95rem;
+  }
+
+  /* Signup banner */
+  .signup-banner {
+    padding: 1.8rem 0;
+  }
+
+  .signup-banner h2 {
+    font-size: 1.4rem;
+  }
+
+  .features-section {
+    padding: 2.5rem 0 0 0;
+  }
+
+  /* Section vertical padding reduced */
+
+  .why-section,
+  .early-access-section,
+  .bottom-signup {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  /* Section headings min scale */
+  .section-title-wrap h2 {
+    font-size: 1.5rem;
+  }
+  .why-content h2 {
+    font-size: 1.35rem;
+  }
+  .early-access-section h2 {
+    font-size: 1.35rem;
+  }
+  .bottom-signup h2 {
+    font-size: 1.25rem;
+  }
+
+  /* Tech icon diagram: shrink slightly */
+  .tech-icon-html,
+  .tech-icon-pdf {
+    width: 58px;
+    height: 66px;
+    font-size: 1.2rem;
+  }
+  .tech-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+  .tech-icon-cpp-small {
+    width: 42px;
+    height: 42px;
+    font-size: 0.75rem;
+  }
+
+  /* Coming-soon strip */
+  .coming-soon-strip {
+    font-size: 0.78rem;
+  }
+
+  /* Product cards tighter on small screens */
+  .product-card {
+    padding: 0.9rem 1.2rem;
+    border-radius: 80px;
+  }
+
+  .card-status {
+    font-size: 0.75rem;
+    padding: 0.35rem 1rem;
+  }
+
+  .card-product-name .iron-text {
+    font-size: 0.95rem;
+  }
+
+  .card-product-name .for-lang {
+    font-size: 0.65rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   Reduced motion preference
+   ------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-content,
+  .hero .signup-banner,
+  .features-section .container {
+    animation: none !important;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
