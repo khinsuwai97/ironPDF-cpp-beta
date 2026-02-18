@@ -1,69 +1,107 @@
-# CodeIgniter 4 Application Starter
+# IronPDF for C++ — Beta Program Landing Page
 
-## What is CodeIgniter?
+A single-page marketing site for the IronPDF C++ beta program, built with CodeIgniter 4. The page collects early-access sign-ups and presents information about the upcoming C++ PDF library.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Tech Stack
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+| Layer | Technology |
+|---|---|
+| Language | PHP 8.2+ |
+| Framework | CodeIgniter 4.7 |
+| CSS Framework | Bootstrap 5.3.2 |
+| Custom Styles | Plain CSS (style.css + queries.css) |
+| Fonts | Gotham (self-hosted) / Montserrat (Google Fonts fallback) |
+| Content | JSON data source (`app/Data/content.json`) |
+| Tests | PHPUnit 10.5 |
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Project Structure
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
-
-## Installation & updates
-
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
-
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+```
+ironpdf-cpp-beta/
+├── app/
+│   ├── Config/
+│   │   └── Routes.php          # GET / → Home::index()
+│   ├── Controllers/
+│   │   └── Home.php            # Loads content.json, passes data to view
+│   ├── Data/
+│   │   └── content.json        # All page copy (hero, features, CTAs, etc.)
+│   └── Views/
+│       └── landing.php         # Bootstrap 5 landing page template
+├── public/
+│   ├── css/
+│   │   ├── style.css           # Base styles and component styles
+│   │   └── queries.css         # Responsive breakpoint overrides
+│   ├── images/                 # SVGs and static assets
+│   └── index.php               # Front controller (web root)
+├── tests/
+│   └── unit/
+│       └── HealthTest.php
+├── env                         # Environment variable template
+└── composer.json
+```
 
 ## Setup
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+### Requirements
 
-## Important Change with index.php
+- PHP 8.2 or higher
+- PHP extensions: `intl`, `mbstring`, `json`
+- Composer
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### Installation
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+1. Clone the repository:
+   ```bash
+   git clone <repo-url>
+   cd ironpdf-cpp-beta
+   ```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+2. Install dependencies:
+   ```bash
+   composer install
+   ```
 
-## Repository Management
+3. Configure the environment:
+   ```bash
+   cp env .env
+   ```
+   Open `.env` and set your base URL:
+   ```
+   app.baseURL = 'http://localhost:8080/'
+   ```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+4. Point your web server document root to the `public/` directory.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+   **Using PHP's built-in server (development only):**
+   ```bash
+   php -S localhost:8080 -t public
+   ```
 
-## Server Requirements
+5. Visit `http://localhost:8080` in your browser.
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+### Updating Content
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+All page copy lives in `app/Data/content.json`. Edit that file to change hero text, feature descriptions, product cards, CTAs, or navigation links — no view changes required.
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+## Running Tests
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+```bash
+vendor/bin/phpunit
+```
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Run a specific test file:
+```bash
+vendor/bin/phpunit tests/unit/HealthTest.php
+```
+
+Run with coverage report:
+```bash
+vendor/bin/phpunit --colors --coverage-text=build/logs/coverage.txt --coverage-html=build/logs/html
+```
+
+## Architecture Notes
+
+- **Data-driven:** All page content is sourced from `content.json`, decoded by the `Home` controller, and passed as variables to the `landing` view. Changing page text means editing JSON only.
+- **No database:** The app is purely static content delivery — no models or database connections.
+- **Responsive:** Mobile-first responsive styles are split into `queries.css` covering five breakpoints (xs, sm, md, lg, xl, xxl) aligned to the Bootstrap 5 grid.
+- **Accessibility:** Output is encoded with `esc()`, interactive elements have ARIA labels, and the hamburger nav uses `aria-expanded` state.

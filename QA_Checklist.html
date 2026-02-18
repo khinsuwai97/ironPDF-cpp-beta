@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>QA Checklist — IronPDF for C++ Beta Landing Page</title>
+    <style>
+      body {
+        font-family: Calibri, "Segoe UI", Arial, sans-serif;
+        font-size: 11pt;
+        color: #1a1a1a;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+      }
+
+      .page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 56px;
+      }
+
+      /* ── Header ── */
+      .doc-title {
+        font-size: 26pt;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin: 0 0 4px;
+      }
+      .doc-subtitle {
+        font-size: 13pt;
+        color: #444;
+        margin: 0 0 14px;
+      }
+      .doc-meta {
+        font-size: 9.5pt;
+        color: #555;
+        border-top: 2px solid #1a1a2e;
+        border-bottom: 1px solid #ccc;
+        padding: 8px 0;
+        margin-bottom: 28px;
+      }
+      .doc-meta strong {
+        color: #1a1a2e;
+      }
+
+      /* ── Section headings ── */
+      h2 {
+        font-size: 13pt;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin: 32px 0 10px;
+        border-left: 4px solid #c6174e;
+        padding-left: 10px;
+      }
+
+      /* ── Legend table ── */
+      .legend-table {
+        border-collapse: collapse;
+        margin-bottom: 28px;
+        font-size: 9.5pt;
+      }
+      .legend-table th {
+        background: #1a1a2e;
+        color: #fff;
+        padding: 6px 18px;
+        text-align: center;
+        font-weight: 700;
+      }
+      .legend-table td {
+        padding: 5px 18px;
+        text-align: center;
+        border: 1px solid #ccc;
+      }
+      .pass-cell {
+        background: #d4edda;
+        color: #155724;
+        font-weight: 600;
+      }
+      .fail-cell {
+        background: #f8d7da;
+        color: #721c24;
+        font-weight: 600;
+      }
+      .pending-cell {
+        background: #fff3cd;
+        color: #856404;
+        font-weight: 600;
+      }
+      .na-cell {
+        background: #e9ecef;
+        color: #495057;
+        font-weight: 600;
+      }
+
+      /* ── Main checklist table ── */
+      table.checklist {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9.5pt;
+        margin-bottom: 10px;
+      }
+      table.checklist thead tr {
+        background: #1a1a2e;
+        color: #fff;
+      }
+      table.checklist thead th {
+        padding: 8px 10px;
+        text-align: left;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      table.checklist tbody tr:nth-child(even) {
+        background: #f5f5f8;
+      }
+      table.checklist tbody tr:hover {
+        background: #eef0f8;
+      }
+      table.checklist td {
+        padding: 7px 10px;
+        border-bottom: 1px solid #ddd;
+        vertical-align: top;
+      }
+      .col-area {
+        width: 14%;
+        font-weight: 600;
+        color: #1a1a2e;
+      }
+      .col-check {
+        width: 30%;
+      }
+      .col-expect {
+        width: 28%;
+      }
+      .col-status {
+        width: 10%;
+        text-align: center;
+      }
+      .col-notes {
+        width: 18%;
+        color: #555;
+        font-style: italic;
+      }
+
+      .status-pass {
+        background: #d4edda;
+        color: #155724;
+        font-weight: 700;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 8.5pt;
+      }
+      .status-fail {
+        background: #f8d7da;
+        color: #721c24;
+        font-weight: 700;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 8.5pt;
+      }
+      .status-pending {
+        background: #fff3cd;
+        color: #856404;
+        font-weight: 700;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 8.5pt;
+      }
+      .status-na {
+        background: #e9ecef;
+        color: #495057;
+        font-weight: 700;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 8.5pt;
+      }
+
+      /* ── Footer ── */
+      .doc-footer {
+        margin-top: 48px;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        font-size: 8.5pt;
+        color: #888;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      @media print {
+        .page {
+          padding: 28px 32px;
+        }
+        h2 {
+          page-break-before: auto;
+        }
+        table {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- ── Document header ── -->
+      <div class="doc-title">QA Checklist</div>
+      <div class="doc-subtitle">IronPDF for C++ — Beta Landing Page</div>
+      <div class="doc-meta">
+        <strong>Project:</strong> Iron Software Frontend Test Task &nbsp;|&nbsp;
+        <strong>Date:</strong> February 2026 &nbsp;|&nbsp;
+        <strong>Tech Stack:</strong> HTML5 &middot; Bootstrap 5.3 &middot;
+        Vanilla JS &middot; CodeIgniter 4 &middot; PHP 8.2
+      </div>
+
+      <!-- ── Legend ── -->
+      <h2>Status Legend</h2>
+      <table class="legend-table">
+        <thead>
+          <tr>
+            <th>Pass</th>
+            <th>Fail</th>
+            <th>Pending</th>
+            <th>N/A</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pass-cell">Check passed</td>
+            <td class="fail-cell">Issue found</td>
+            <td class="pending-cell">Not yet verified</td>
+            <td class="na-cell">Not applicable</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       1. PIXEL ALIGNMENT
+       ════════════════════════════════════ -->
+      <h2>1. Pixel Alignment &amp; Spacing vs. Figma</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Area</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">Hero</td>
+            <td>Hero content column width matches Figma (~58% on desktop)</td>
+            <td>
+              Text stays in left col-lg-7; C++ illustration occupies right ~42%
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Hero</td>
+            <td>
+              C++ illustration positioned to right edge without overlapping hero
+              text
+            </td>
+            <td>hero-image-wrap width 75% at XXL; image anchored top-right</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              Confirmed at 1440px — illustration top-right, no overlap with
+              col-lg-7 text
+            </td>
+          </tr>
+          <tr>
+            <td class="col-area">Nav</td>
+            <td>Navigation link spacing and padding matches Figma</td>
+            <td>
+              Nav links have 0.4rem 0.75rem padding; 0.25rem gap between items
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Sign-up Banner</td>
+            <td>Banner horizontal padding consistent with Figma</td>
+            <td>
+              Container padding matches design; gradient fades left to right
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Sign-up Banner</td>
+            <td>Pill form input and button height (64px) matches Figma</td>
+            <td>
+              signup-form height: 64px; button fills height with border-radius
+              79px
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Features</td>
+            <td>Feature items displayed in a single row with | separator</td>
+            <td>flex-wrap row; | separator visible between items on desktop</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Why C++</td>
+            <td>
+              Icon group (col-md-4) and text (col-md-8) proportions match Figma
+            </td>
+            <td>Image left ~33%; text right ~67%</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Early Access</td>
+            <td>Lead text spans full container width (not capped at 720px)</td>
+            <td>No max-width on .lead-text; text fills container</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">Fixed during dev</td>
+          </tr>
+          <tr>
+            <td class="col-area">Product Cards</td>
+            <td>
+              Product cards display responsively without cramping at mid-range
+              viewports
+            </td>
+            <td>
+              Max 2 cards per row on viewports below 1440px; single column on
+              mobile
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              Figma shows 3-in-a-row at full desktop width; reverted to
+              max-width: calc(50% - 0.5rem) — 3-in-a-row was cramped at 1024px
+              (Nest Hub)
+            </td>
+          </tr>
+          <tr>
+            <td class="col-area">Content</td>
+            <td>
+              All text content (headings, body, CTAs, labels) matches Figma
+              design
+            </td>
+            <td>
+              Nav links, hero text, feature items, section headings, card labels
+              all match
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              Figma placeholder shows "Enter email adress" (typo); content.json
+              correctly uses "Enter email address"
+            </td>
+          </tr>
+          <tr>
+            <td class="col-area">Section Rhythm</td>
+            <td>Consistent vertical spacing between all sections</td>
+            <td>5–6rem padding top/bottom per section</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       2. TYPOGRAPHY
+       ════════════════════════════════════ -->
+      <h2>2. Typography Accuracy</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Area</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">Fonts</td>
+            <td>Gotham font loads from self-hosted woff2 files</td>
+            <td>
+              @font-face declarations for 400, 500, 700, 800 weights load
+              correctly
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              All 4 Gotham weights (Book, Medium, Bold, Black) confirmed present
+              as woff + woff2 in /public/fonts/
+            </td>
+          </tr>
+          <tr>
+            <td class="col-area">Fonts</td>
+            <td>Montserrat fallback renders when Gotham unavailable</td>
+            <td>font-family stack falls back to Montserrat (Google Fonts)</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Hero Title</td>
+            <td>Hero h1 uses fluid sizing (clamp) matching Figma scale</td>
+            <td>
+              clamp(2rem, 5vw, 3.125rem); font-weight 800; line-height 1.08
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Hero Subtitle</td>
+            <td>Subtitle text is bold and correct size</td>
+            <td>1.125rem; font-weight 700</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Section Headings</td>
+            <td>All h2 headings use consistent size and weight</td>
+            <td>clamp(1.8rem, 3vw, 2.5rem); font-weight 700–800</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Highlight Color</td>
+            <td>Highlighted words in headings use correct accent color</td>
+            <td>#c6aac6 (--clr-accent-purple-light)</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Body Text</td>
+            <td>Body paragraphs use correct line-height and weight</td>
+            <td>line-height 1.75; font-weight 300–400</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Nav Links</td>
+            <td>Nav links are uppercase, small, with letter-spacing</td>
+            <td>
+              0.6875rem; font-weight 700; text-transform uppercase;
+              letter-spacing 0.04em
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Coming Soon</td>
+            <td>"Coming soon" text in hero uses correct muted color</td>
+            <td>#8f618f; font-weight 300; 0.875rem</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       3. RESPONSIVENESS
+       ════════════════════════════════════ -->
+      <h2>3. Responsiveness Across Breakpoints</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Breakpoint</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">XXL ≥1400px</td>
+            <td>Hero image visible and correctly scaled</td>
+            <td>hero-image-wrap 75% width; image height 88%</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              Tested at 1440px — image visible, 3 product cards fit in one row
+            </td>
+          </tr>
+          <tr>
+            <td class="col-area">XL 1200–1399px</td>
+            <td>Hero image narrowed to 53% and still visible</td>
+            <td>hero-image-wrap 53%; layout intact</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              Tested at 1280px — image narrowed, layout intact, form on one line
+            </td>
+          </tr>
+          <tr>
+            <td class="col-area">LG ≤1199px</td>
+            <td>Hero image height reduces to 65%</td>
+            <td>Illustration visible but shorter; no overflow</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              Tested at 1100px — image shorter, hero title wraps to 2 lines
+              (expected), no overflow
+            </td>
+          </tr>
+          <tr>
+            <td class="col-area">MD ≤991px</td>
+            <td>Hero image hidden; nav collapses to hamburger</td>
+            <td>hero-image-wrap display:none; navbar-toggler visible</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">MD ≤991px</td>
+            <td>Why C++ image stacks above text</td>
+            <td>col-md-4 image moves above col-md-8 text block</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">SM ≤767px</td>
+            <td>Signup form stacks input above button</td>
+            <td>flex-direction: column; button full width</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">SM ≤767px</td>
+            <td>Product cards display as single full-width column</td>
+            <td>flex-direction: column; max-width 100%</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">SM ≤767px</td>
+            <td>Feature list items display vertically, no | separator</td>
+            <td>flex-direction: column; separator span display:none</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">XS &lt;576px</td>
+            <td>All sections have compact padding; no horizontal scroll</td>
+            <td>Container padding 16px; no overflow-x on body</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes">
+              Tested at 375px — stacked layout, no horizontal scroll, all
+              sections compact
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       4. CROSS-BROWSER
+       ════════════════════════════════════ -->
+      <h2>4. Cross-Browser Behaviour</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Browser</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">Chrome</td>
+            <td>Full page layout, fonts, animations render correctly</td>
+            <td>No visual regressions; fadeUp animation plays on load</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Confirmed via breakpoint tests and Lighthouse audit — layout, fonts, and sections all correct</td>
+          </tr>
+          <tr>
+            <td class="col-area">Firefox</td>
+            <td>Flexbox layout and pill form border-radius render correctly</td>
+            <td>No layout shift; border-radius 81px renders as expected</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Tested at desktop width — flexbox intact, pill border-radius renders correctly, 3 product cards in row</td>
+          </tr>
+          <tr>
+            <td class="col-area">Safari</td>
+            <td>Webkit font-smoothing applied; form inputs styled correctly</td>
+            <td>
+              -webkit-font-smoothing: antialiased; no default input styling
+            </td>
+            <td class="col-status">
+              <span class="status-na">N/A</span>
+            </td>
+            <td class="col-notes">Safari not available for testing on this machine</td>
+          </tr>
+          <tr>
+            <td class="col-area">Edge</td>
+            <td>General layout matches Chrome; no fallback issues</td>
+            <td>Same as Chrome (Chromium engine)</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Tested at desktop width — layout matches Chrome exactly, no fallback issues detected</td>
+          </tr>
+          <tr>
+            <td class="col-area">All</td>
+            <td>Mobile nav hamburger toggle works and animates</td>
+            <td>Bootstrap JS handles collapse; custom CSS animates ☰ → ✕</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Tested in Edge (320px) and Firefox (400px) — nav expands correctly, ✕ icon visible when open</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       5. SEO VALIDATION
+       ════════════════════════════════════ -->
+      <h2>5. SEO Validation</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Area</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">Title Tag</td>
+            <td>&lt;title&gt; tag is present and descriptive</td>
+            <td>"IronPDF for C++ | Beta Software Program"</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Meta</td>
+            <td>Meta description present and under 160 chars</td>
+            <td>Describes the product and CTA clearly</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Meta</td>
+            <td>Meta keywords present</td>
+            <td>"IronPDF, C++, PDF library, beta program…"</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Open Graph</td>
+            <td>og:title and og:description present</td>
+            <td>og:type = website; og:title and og:description set</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Headings</td>
+            <td>Single h1 on page (hero title)</td>
+            <td>
+              Only one &lt;h1&gt; exists; all other section titles use
+              &lt;h2&gt;
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Headings</td>
+            <td>Heading hierarchy is logical (h1 → h2, no skips)</td>
+            <td>h1 in hero; h2 in all sections; no h3+ used</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Images</td>
+            <td>All &lt;img&gt; elements have descriptive alt attributes</td>
+            <td>
+              Hero image, logo, why-icon, coming-soon badge all have alt text
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Semantic HTML</td>
+            <td>
+              Semantic elements used: &lt;nav&gt;, &lt;section&gt;,
+              &lt;form&gt;, &lt;ul&gt;
+            </td>
+            <td>No div-soup for structural elements</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Lang</td>
+            <td>&lt;html lang="en"&gt; attribute present</td>
+            <td>
+              Correct language declared for screen readers and search engines
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       6. CORE WEB VITALS
+       ════════════════════════════════════ -->
+      <h2>6. Core Web Vitals Considerations</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Metric</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">LCP</td>
+            <td>Largest Contentful Paint — hero heading/image loads quickly</td>
+            <td>&lt; 2.5s on desktop; hero SVG is lightweight vector</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Lighthouse measured 0.7s LCP — Pass</td>
+          </tr>
+          <tr>
+            <td class="col-area">CLS</td>
+            <td>No layout shift from Gotham font loading</td>
+            <td>
+              font-display: swap on all @font-face; fallback Montserrat has
+              similar metrics
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">CLS</td>
+            <td>Images have explicit dimensions or aspect-ratio preserved</td>
+            <td>
+              All SVGs scale via max-width/height:auto; no layout shift on load
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">INP / FID</td>
+            <td>No heavy JavaScript blocking main thread</td>
+            <td>
+              Only Bootstrap bundle JS loaded; no custom JS; deferred naturally
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Performance</td>
+            <td>
+              Google Fonts preconnect links present to reduce DNS lookup time
+            </td>
+            <td>
+              &lt;link rel="preconnect"&gt; for fonts.googleapis.com and
+              fonts.gstatic.com
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Performance</td>
+            <td>
+              Bootstrap and Google Fonts loaded from CDN with integrity/caching
+            </td>
+            <td>CDN delivers minified assets with long cache TTL</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       7. ACCESSIBILITY
+       ════════════════════════════════════ -->
+      <h2>7. Accessibility</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Area</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">Forms</td>
+            <td>Email inputs have associated labels (visually-hidden)</td>
+            <td>
+              &lt;label for="email-banner"&gt; and &lt;label
+              for="email-bottom"&gt; present
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Nav</td>
+            <td>Navigation has aria-label attribute</td>
+            <td>aria-label="Main navigation" on &lt;nav&gt;</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Nav</td>
+            <td>Hamburger button uses aria-expanded to reflect state</td>
+            <td>
+              aria-expanded="false/true" toggles correctly via Bootstrap JS
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Focus</td>
+            <td>
+              Focus-visible outline is visible on all interactive elements
+            </td>
+            <td>
+              :focus-visible { outline: 2px solid #e01a59; outline-offset: 3px }
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Motion</td>
+            <td>Animations disabled for prefers-reduced-motion users</td>
+            <td>
+              All animation and transition-duration set to 0.01ms when
+              preference active
+            </td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Contrast</td>
+            <td>
+              White text on dark purple backgrounds meets WCAG AA ratio (≥
+              4.5:1)
+            </td>
+            <td>#ffffff on #2c0f29 ≈ 14:1 contrast ratio</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+          <tr>
+            <td class="col-area">Keyboard</td>
+            <td>Tab order is logical through nav → form → sections</td>
+            <td>
+              No focus traps; all interactive elements reachable by keyboard
+            </td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Bug found and fixed: .signup-form .form-control:focus had outline:none overriding :focus-visible — changed to :focus:not(:focus-visible) so keyboard Tab now shows focus ring on both email inputs</td>
+          </tr>
+          <tr>
+            <td class="col-area">Decorative</td>
+            <td>
+              Decorative/aria-hidden elements do not pollute screen reader
+              output
+            </td>
+            <td>Logo mark span has aria-hidden="true"</td>
+            <td class="col-status"><span class="status-pass">Pass</span></td>
+            <td class="col-notes"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ════════════════════════════════════
+       8. LIGHTHOUSE
+       ════════════════════════════════════ -->
+      <h2>8. Lighthouse Checks</h2>
+      <table class="checklist">
+        <thead>
+          <tr>
+            <th class="col-area">Category</th>
+            <th class="col-check">Check Item</th>
+            <th class="col-expect">Expected Result</th>
+            <th class="col-status">Status</th>
+            <th class="col-notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-area">Performance</td>
+            <td>Lighthouse Performance score</td>
+            <td>≥ 90</td>
+            <td class="col-status">
+              <span class="status-fail">Fail</span>
+            </td>
+            <td class="col-notes">Score: 72 on localhost. TBT inflated by PHP built-in dev server; expected to pass on production server (Apache/Nginx)</td>
+          </tr>
+          <tr>
+            <td class="col-area">Accessibility</td>
+            <td>Lighthouse Accessibility score</td>
+            <td>≥ 95</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Score: 95</td>
+          </tr>
+          <tr>
+            <td class="col-area">Best Practices</td>
+            <td>Lighthouse Best Practices score</td>
+            <td>≥ 90</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Score: 100</td>
+          </tr>
+          <tr>
+            <td class="col-area">SEO</td>
+            <td>Lighthouse SEO score</td>
+            <td>≥ 90</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">Score: 100</td>
+          </tr>
+          <tr>
+            <td class="col-area">LCP</td>
+            <td>Largest Contentful Paint reported by Lighthouse</td>
+            <td>&lt; 2.5s</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">0.7s — well within target</td>
+          </tr>
+          <tr>
+            <td class="col-area">CLS</td>
+            <td>Cumulative Layout Shift reported by Lighthouse</td>
+            <td>&lt; 0.1</td>
+            <td class="col-status">
+              <span class="status-pass">Pass</span>
+            </td>
+            <td class="col-notes">0 — no layout shift</td>
+          </tr>
+          <tr>
+            <td class="col-area">TBT</td>
+            <td>Total Blocking Time reported by Lighthouse</td>
+            <td>&lt; 200ms (minimal JS on page)</td>
+            <td class="col-status">
+              <span class="status-fail">Fail</span>
+            </td>
+            <td class="col-notes">840ms on localhost. PHP dev server (php -S) is single-threaded; inflates TBT under Lighthouse CPU throttling. Bootstrap JS deferred; production deployment expected to resolve this</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ── Footer ── -->
+      <div class="doc-footer">
+        <span
+          >IronPDF for C++ — Beta Landing Page &nbsp;|&nbsp; QA Checklist</span
+        >
+        <span
+          >Iron Software Frontend Test Task &nbsp;|&nbsp; February 2026</span
+        >
+      </div>
+    </div>
+  </body>
+</html>

@@ -186,7 +186,7 @@
           <div class="col-md-4">
             <div class="why-icon-group">
               <img
-                src="/images/GroupHTML+PDF.svg"
+                src="<?= base_url('images/GroupHTML-PDF.svg') ?>"
                 alt="HTML to PDF conversion diagram"
                 class="why-icon-diagram"
               />
@@ -250,6 +250,6 @@
     </section>
 
     <!-- Bootstrap JS (for mobile nav toggle) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
   </body>
 </html>
