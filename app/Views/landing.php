@@ -9,6 +9,7 @@
     <meta property="og:description" content="<?= esc($meta['og_description']) ?>" />
     <meta property="og:type" content="website" />
     <title><?= esc($meta['title']) ?></title>
+    <link rel="icon" type="image/svg+xml" href="<?= base_url('images/PDF.svg') ?>" />
 
     <!-- Bootstrap 5.3 -->
     <link
