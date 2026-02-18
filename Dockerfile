@@ -9,6 +9,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
+RUN echo 'app.baseURL = https://ironpdf-cpp-beta-production.up.railway.app' >> .env
+
 RUN composer install --optimize-autoloader --no-dev --no-interaction
 
 CMD php -S 0.0.0.0:${PORT:-8080} -t public
