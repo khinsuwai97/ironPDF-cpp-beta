@@ -38,7 +38,7 @@
       <!-- Hero image — spans the entire wrapper -->
       <div class="hero-image-wrap">
         <img
-          src="<?= base_url('images/IMAGE-1.svg') ?>"
+          src="<?= base_url('images/hero.svg') ?>"
           alt="C++ file icon with decorative geometric shapes"
           class="hero-image"
         />

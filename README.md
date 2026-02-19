@@ -4,15 +4,15 @@ A single-page marketing site for the IronPDF C++ beta program, built with CodeIg
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Language | PHP 8.2+ |
-| Framework | CodeIgniter 4.7 |
-| CSS Framework | Bootstrap 5.3.2 |
-| Custom Styles | Plain CSS (style.css + queries.css) |
-| Fonts | Gotham (self-hosted) / Montserrat (Google Fonts fallback) |
-| Content | JSON data source (`app/Data/content.json`) |
-| Tests | PHPUnit 10.5 |
+| Layer         | Technology                                                |
+| ------------- | --------------------------------------------------------- |
+| Language      | PHP 8.2+                                                  |
+| Framework     | CodeIgniter 4.7                                           |
+| CSS Framework | Bootstrap 5.3.2                                           |
+| Custom Styles | Plain CSS (style.css + queries.css)                       |
+| Fonts         | Gotham (self-hosted) / Montserrat (Google Fonts fallback) |
+| Content       | JSON data source (`app/Data/content.json`)                |
+| Tests         | PHPUnit 10.5                                              |
 
 ## Project Structure
 
@@ -51,21 +51,26 @@ ironpdf-cpp-beta/
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone <repo-url>
    cd ironpdf-cpp-beta
    ```
 
 2. Install dependencies:
+
    ```bash
    composer install
    ```
 
 3. Configure the environment:
+
    ```bash
    cp env .env
    ```
+
    Open `.env` and set your base URL:
+
    ```
    app.baseURL = 'http://localhost:8080/'
    ```
@@ -73,6 +78,7 @@ ironpdf-cpp-beta/
 4. Point your web server document root to the `public/` directory.
 
    **Using PHP's built-in server (development only):**
+
    ```bash
    php -S localhost:8080 -t public
    ```
@@ -90,11 +96,13 @@ vendor/bin/phpunit
 ```
 
 Run a specific test file:
+
 ```bash
 vendor/bin/phpunit tests/unit/HealthTest.php
 ```
 
 Run with coverage report:
+
 ```bash
 vendor/bin/phpunit --colors --coverage-text=build/logs/coverage.txt --coverage-html=build/logs/html
 ```
